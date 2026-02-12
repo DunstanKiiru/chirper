@@ -58,35 +58,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-
-<?php
-
-namespace App\Http\Controllers;
-
-class ChirpController extends Controller
-{
-    public function index()
-    {
-        $chirps = [
-            [
-                'author' => 'Jane Doe',
-                'message' => 'Just deployed my first laravel app! 🚀',
-                'time' => '5 minutes ago',
-            ],
-
-            [
-                'author' => 'John Smith',
-                'message' => 'Laravel makes web development fun again',
-                'time' => '1 hour ago',
-            ],
-            [
-                'author' => 'Alice Johnson',
-                'message' => 'Working on something cool with Chirper...',
-                'time' => '3 hours ago',
-            ],
-
-        ];
-
-        return view('home',['chirps' => $chirps]);
-    }
-}
+ 
