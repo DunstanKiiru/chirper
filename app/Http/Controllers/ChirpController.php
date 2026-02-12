@@ -11,7 +11,7 @@ class ChirpController extends Controller
      */
     public function index()
     {
-         $chirps = [
+        $chirps = [
             [
                 'author' => 'Jane Doe',
                 'message' => 'Just deployed my first laravel app! 🚀',
@@ -33,6 +33,8 @@ class ChirpController extends Controller
 
         return view('home',['chirps' => $chirps]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
