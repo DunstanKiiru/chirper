@@ -1,4 +1,5 @@
 <x-layout>
+
     <x-slot:title>
         Home Feed
     </x-slot:title>
@@ -12,8 +13,13 @@
                 <form method="POST" action="/chirps">
                     @csrf
                     <div class="form-control w-full">
-                        <textarea name="message" placeholder="What's on your mind?" class="textarea textarea-bordered w-full resize-none"
-                            rows="4" maxlength="255" required></textarea>
+                        <textarea name="message" placeholder="What's on your mind?"
+                            class="textarea textarea-bordered w-full resize-none @error('message') textarea-error @enderror" rows="4">{{ old('message') }}</textarea>
+                        @error('message')
+                            <div class="label">
+                                <span class="label-text-alt text-error">{{ $message }}</span>
+                            </div>
+                        @enderror
                     </div>
                     <div class="mt-4 flex items-center justify-end">
                         <button type="submit" class="btn btn-primary btn-sm">
@@ -27,7 +33,7 @@
 
 
 
-<!-- Feed -->
+        <!-- Feed -->
         <div class="space-y-4 mt-8">
             @forelse ($chirps as $chirp)
                 <x-chirp :chirp="$chirp" />
