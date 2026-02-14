@@ -14,8 +14,7 @@
             @else
                 <div class="avatar placeholder">
                     <div class="size-10 rounded-full">
-                        <img src="<https://avatars.laravel.cloud/taylor@laravel.com>" alt="Anonymous User"
-                            class="rounded-full" />
+                        <img src="https://avatars.laravel.cloud/Anonymous" alt="Anonymous User" class="rounded-full" />
                     </div>
                 </div>
             @endif
