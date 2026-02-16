@@ -78,9 +78,22 @@ class ChirpController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Chirp $chirp)
     {
-        //
+        // validate request
+        $validated = $request->validate([
+            'message' =>'required|string|max:255',
+        ],[
+            'message.required'=>'please write shomething to chirp!',
+            'message.max' =>'chirps must be 255 characters or less',
+        ]
+        );
+
+        //update chirp
+        $chirp->update($validated);
+
+        return redirect('/')->with('success','Your Chirp has been updated');
+
     }
 
     /**
