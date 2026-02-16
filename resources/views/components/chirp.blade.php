@@ -32,7 +32,7 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit" onclick="return confirm('Are you sure you want to delete this chirp?')"
-                            class="btn btn-ghost btn-xs text-error"></button>
+                            class="btn btn-ghost btn-xs text-error">Delete</button>
                     </form>
                 </div>
                 <p class="mt-1">
