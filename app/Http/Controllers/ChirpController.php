@@ -16,11 +16,11 @@ class ChirpController extends Controller
 
 
         $chirps = Chirp::with('user')
-              ->latest()
-              ->take(50) //limit to 50 recent chirps
-              ->get();
+            ->latest()
+            ->take(50) //limit to 50 recent chirps
+            ->get();
 
-        return view('home',['chirps' => $chirps]);
+        return view('home', ['chirps' => $chirps]);
     }
 
 
@@ -39,22 +39,24 @@ class ChirpController extends Controller
     public function store(Request $request)
     {
         // validate request
-        $validated = $request->validate([
-            'message' =>'required|string|max:255',
-        ],[
-            'message.required'=>'please write shomething to chirp!',
-            'message.max' =>'chirps must be 255 characters or less',
-        ]
+        $validated = $request->validate(
+            [
+                'message' => 'required|string|max:255',
+            ],
+            [
+                'message.required' => 'please write shomething to chirp!',
+                'message.max' => 'chirps must be 255 characters or less',
+            ]
         );
 
         //create chirp
 
         Chirp::create([
-            'message'=> $validated['message'],
-            'user_id'=>null,
+            'message' => $validated['message'],
+            'user_id' => null,
         ]);
 
-        return redirect('/')->with('success','Your chirp has been created Successfully');
+        return redirect('/')->with('success', 'Your chirp has been created Successfully');
     }
 
     /**
@@ -81,26 +83,28 @@ class ChirpController extends Controller
     public function update(Request $request, Chirp $chirp)
     {
         // validate request
-        $validated = $request->validate([
-            'message' =>'required|string|max:255',
-        ],[
-            'message.required'=>'please write shomething to chirp!',
-            'message.max' =>'chirps must be 255 characters or less',
-        ]
+        $validated = $request->validate(
+            [
+                'message' => 'required|string|max:255',
+            ],
+            [
+                'message.required' => 'please write shomething to chirp!',
+                'message.max' => 'chirps must be 255 characters or less',
+            ]
         );
 
         //update chirp
         $chirp->update($validated);
 
-        return redirect('/')->with('success','Your Chirp has been updated');
-
+        return redirect('/')->with('success', 'Your Chirp has been updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Chirp $chirp)
     {
-        //
+        $chirp->delete();
+        return redirect('/')->with('success', 'Your Chirp has been deleted!');
     }
 }
