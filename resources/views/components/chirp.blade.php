@@ -30,6 +30,11 @@
                             <span class="text-sm text-base-content/60 italic">edited</span>
                         @endif
                     </div>
+                    <!--auth-->
+                    <!--mthd1 can -->
+
+                    @can('update', $chirp)
+                    <!--or mthd 2 if-->
                     @if (auth()->check() && auth()->id() === $chirp->user_id)
                     <!--edit and delete-->
                         <div class="flex gap-1">
@@ -43,6 +48,7 @@
                                     class="btn btn-ghost btn-xs text-error">Delete</button>
                             </form>
                         </div>
+                    @endcan
                     @endif
                 </div>
                 <p class="mt-1">
