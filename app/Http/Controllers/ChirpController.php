@@ -38,6 +38,7 @@ class ChirpController extends Controller
      */
     public function store(Request $request)
     {
+
         // validate request
         $validated = $request->validate(
             [
@@ -51,10 +52,7 @@ class ChirpController extends Controller
 
         //create chirp
 
-        Chirp::create([
-            'message' => $validated['message'],
-            'user_id' => null,
-        ]);
+        auth()->user()->chirps()->create($validated);
 
         return redirect('/')->with('success', 'Your chirp has been created Successfully');
     }
@@ -73,6 +71,7 @@ class ChirpController extends Controller
     public function edit(Chirp $chirp)
     {
         //edit chirp
+        $this->authorize('update', $chirp);
 
         return view('chirps.edit', compact('chirp'));
     }
@@ -82,6 +81,7 @@ class ChirpController extends Controller
      */
     public function update(Request $request, Chirp $chirp)
     {
+        $this->authorize('update', $chirp);
         // validate request
         $validated = $request->validate(
             [
@@ -104,6 +104,7 @@ class ChirpController extends Controller
      */
     public function destroy(Chirp $chirp)
     {
+        $this->authorize('update', $chirp);
 
         $chirp->delete();
         return redirect('/')->with('success', 'Your Chirp has been deleted!');
