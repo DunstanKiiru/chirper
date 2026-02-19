@@ -15,8 +15,8 @@ class Login extends Controller
     {
         //Validates input
         $credentials = $request->validate([
-            'email' => ['required|email'],
-            'password' => ['required'],
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
         //Attempts to log in the user
